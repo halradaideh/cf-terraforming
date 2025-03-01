@@ -134,7 +134,7 @@ func sanitiseTerraformResourceName(s string) string {
 	return re.ReplaceAllString(s, "_")
 }
 
-// flattenAttrMap takes a list of attributes defined as a list of maps comprising of {"id": "attrId", "value": "attrValue"}
+// flattenAttrMap takes a list of attributes defined as a list of maps comprising {"id": "attrId", "value": "attrValue"}
 // and flattens it to a single map of {"attrId": "attrValue"}.
 func flattenAttrMap(l []interface{}) map[string]interface{} {
 	result := make(map[string]interface{})
@@ -303,8 +303,7 @@ func writeAttrLine(key string, value interface{}, parentName string, body *hclwr
 	}
 }
 
-// Process any expression into its appropriate cty.Value
-// Also modified to use TupleVal consistently
+// Process any expression into its appropriate cty.Value and also modified to use TupleVal consistently.
 func processExpression(val interface{}) cty.Value {
 	if val == nil {
 		return cty.NullVal(cty.DynamicPseudoType)
